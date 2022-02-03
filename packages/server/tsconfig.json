@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "strictPropertyInitialization": false
+  }
+}

@@ -109,3 +109,5 @@ dist
 
 
 src/server/configs.ts
+
+packages/server/env/.env.local

@@ -1,23 +1,20 @@
 {
-  "extends": "@tsconfig/node12/tsconfig.json",
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "target": "es2019",
-    "jsx": "react",
+    "allowJs": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "keyofStringsOnly": true,
     "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
-    "outDir": "./dist/",
     "skipLibCheck": true,
-    "lib": [
-      "DOM"
-    ]
+    "strict": true,
+    "target": "es2017"
   },
-  "exclude": [
-    "./src/server "
-  ],
-  "include": [
-    "./src/client/*",
-    "./src/client/types/**/*.d.ts"
-  ]
+  "exclude": ["**/node_modules/*", "**/dist/*", "scripts/*"]
 }
