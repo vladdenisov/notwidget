@@ -1,4 +1,5 @@
 import {Request, Response} from 'express';
+import { IRequest } from '../domain/IRequest';
 
 export default (req: Request, res: Response, next: (param?: unknown) => void): void => {
     console.clear()

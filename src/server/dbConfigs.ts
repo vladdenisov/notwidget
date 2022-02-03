@@ -14,7 +14,7 @@ class Database {
     dbConnection(): Mongoose {
         const {mongodb: {url, port, collection, password, username}} = this._config;
         const mongoURL = (username && password)
-            ? `mongodb://${username}:${password}${url}:${port}/${collection}`
+            ? `mongodb+srv://${username}:${password}@${url}/${collection}?retryWrites=true&w=majority`
             : `mongodb://${url}:${port}/${collection}`;
         this._mongo
             .connect(

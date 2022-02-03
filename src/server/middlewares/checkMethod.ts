@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
 import {IError} from '../domain/IError';
+import { IRequest } from '../domain/IRequest';
 import path from '../route/path';
 
 // Check to see if the requested route has the requested method as well

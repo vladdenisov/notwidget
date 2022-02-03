@@ -7,4 +7,5 @@ export interface IUser extends Document {
     username: string;
     widgets: IWidget[];
     isEmailVerified: boolean;
+    password: string;
 }

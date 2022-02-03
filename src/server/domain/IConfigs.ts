@@ -1,5 +1,7 @@
 export interface IConfigs {
     mongodb: IMongo,
+    saltRounds: number,
+    secret: string
 }
 
 interface IMongo {

@@ -2,11 +2,11 @@ import {Ipath, IPathRoute} from "../domain/IPath";
 
 function path(url: string): IPathRoute {
     const allRoutes: Ipath = {
-        "/test": {
-            methods: ["POST", "GET", "PUT", "DELETE"]
+        "/login": {
+            methods: ["POST"]
         },
-        "/extra": {
-            methods: ["POST", "GET", "PUT"]
+        "/createaccount": {
+            methods: ["POST"]
         }
     }
     return allRoutes[url];

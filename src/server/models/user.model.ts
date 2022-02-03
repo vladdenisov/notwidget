@@ -10,7 +10,8 @@ const UserSchema: Schema<IUser> = new Schema<IUser>(
     email: {type: String, required: true},
     username: {type: String, required: true},
     widgets: {type: Array, required: true},
-    isEmailVerified: {type: Boolean, default: false}
+    isEmailVerified: {type: Boolean, default: false},
+    password: {type: String, required: true}
   }
 );
 

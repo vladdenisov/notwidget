@@ -1,4 +1,4 @@
-import test from './routes/test';
-import extra from './routes/extra';
+import login from './routes/login';
+import createAccount from './routes/createAccount'
 
-export default { extra, test };
+export default { login, createAccount };
