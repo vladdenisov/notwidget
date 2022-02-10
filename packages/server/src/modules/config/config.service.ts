@@ -5,6 +5,7 @@ import { readFileSync, readdirSync } from 'fs';
 import { DotenvParseOutput, parse } from 'dotenv';
 import { number, object, string } from 'joi';
 import { InternalServerErrorException, Logger } from '@nestjs/common';
+import { MongooseModuleOptions } from '@nestjs/mongoose';
 
 export class ConfigService {
   public rootDir: string;
@@ -15,6 +16,7 @@ export class ConfigService {
     HOST: string().required(),
     PORT: number().default(4000),
     SECRET_JWT_KEY: string().required(),
+    MONGO_URI: string().required()
   });
   private envConfig: DotenvParseOutput;
   private logger = new Logger(ConfigService.name);
@@ -143,12 +145,21 @@ export class ConfigService {
   get port(): number {
     return parseInt(this.envConfig.PORT, 10);
   }
-
+  
+  get mongo(): string {
+    return String(this.envConfig.MONGO_URI);
+  }
   /**
    * Secret getters
    */
 
   get secretJwtKey(): string {
     return String(this.envConfig.SECRET_JWT_KEY);
+  }
+  createMongooseOptions(): MongooseModuleOptions {
+    return {
+      uri: this.mongo,
+      dbName: 'notwiget'
+    };
   }
 }
