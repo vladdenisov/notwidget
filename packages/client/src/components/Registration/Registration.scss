@@ -1,0 +1,26 @@
+.progress-bar {
+  display: flex;
+  width: 160px;
+  padding: 10px 0;
+  * {
+    margin: auto;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #B9B9C4;
+    &.active {
+      background: #007AFF;
+      border: 1px solid #007AFF;
+    }
+  }
+  .line {
+    height: 1px;
+    width: 40px;
+    background: #B9B9C4;
+    &.active {
+      background: #007AFF;
+    }
+  }
+}
