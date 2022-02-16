@@ -24,7 +24,7 @@
     <br />
     <a href="https://github.com/vladdenisov/notwidget">View Demo</a>
     ·
-    <a href=https://github.com/vladdenisov/notwidget/issues">Report Bug</a>
+    <a href="https://github.com/vladdenisov/notwidget/issues">Report Bug</a>
     ·
     <a href="https://github.com/vladdenisov/notwidget/issues">Request Feature</a>
   </p>
