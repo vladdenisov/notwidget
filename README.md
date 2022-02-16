@@ -1,235 +1,220 @@
-# Nest - React boilerplate
+[//]: # (<div id="top"></div>)
 
-This is a basic boilerplate to quickly set up a web application **fully written in [TypeScript](https://www.typescriptlang.org/)** (^3.7.4) based on:
+[//]: # ([![Contributors][contributors-shield]][contributors-url])
 
-- [NestJS](https://nestjs.com/) (^7.0.0) for the **server**: [> Go to the server package](./packages/server)
+[//]: # ([![Forks][forks-shield]][forks-url])
 
-  > _« A progressive Node.js framework for building efficient, reliable and scalable server-side applications. »_
+[//]: # ([![Stargazers][stars-shield]][stars-url])
 
-- [React + ReactDOM](https://reactjs.org/) (^17.0.0) for the **client**: [> Go to the client package](./packages/client)
+[//]: # ([![Issues][issues-shield]][issues-url])
 
-  > _« A JavaScript library for building user interfaces »_
+[//]: # ([![MIT License][license-shield]][license-url])
 
-- [Vite](https://vitejs.dev/) (^2.0.5): Based on ESBuild and Rollup, this tool combines speed, performance and configurability to offer the best frontend DX possible
+[//]: # ([![LinkedIn][linkedin-shield]][linkedin-url])
 
-  > _« Next Generation Frontend Tooling »_
 
-## Features
 
-While being minimalistic, this boilerplate offers a number of features which can be very valuable for the Development Experience (DX):
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+<h3 align="center">Notwidget</h3>
 
-### Global
+  <p align="center">
+    Free and open-source Notion widgets with customisation
+    <br />
+    <a href="https://github.com/vladdenisov/notwidget">View Demo</a>
+    ·
+    <a href=https://github.com/vladdenisov/notwidget/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/vladdenisov/notwidget/issues">Request Feature</a>
+  </p>
+</div>
 
-- Makes use of the [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) to centralise the package management system for all the internal packages.
 
-- TypeScript ^4.2.3 which comes with, for example, **optional chaining** and customised [import paths](#typescript-import-paths) already defined for each package.
 
-- EditorConfig + Prettier for [code formatting](#code-formatting).
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#built-with">Built With</a>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-- Full ESLint configurations for [linting](#linting).
+### Built With
 
-- Consistent coding style following the standards. See [CONTRIBUTING](./CONTRIBUTING.md#coding-styles).
+* [Next.js](https://nextjs.org/)
+* [React.js](https://reactjs.org/)
 
-- Development scripts: `yarn start:dev` can be run in any package. See [Development & builds](#development--builds) for more information.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Client
 
-- [Vite's Hot Module Replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) combined with the [React Fast Refresh](https://github.com/facebook/react/tree/master/packages/react-refresh) offers an incredibly fast development process. When you edit and save a source file, it will only reload the corresponding module in the development server AND only **re-render the depending components without losing their state**!
+[//]: # ()
+[//]: # (<!-- GETTING STARTED -->)
 
-- Debugger tool so you can avoid using the native but synchronous and greed `console`'s methods. For more information, see the client README section about the [Debug library](./packages/client#debug-library).
+[//]: # (## Getting Started)
 
-- Production ready [NGINX](https://nginx.org/) configuration example to optimise your frontend file delivery.
+[//]: # ()
+[//]: # (This is an example of how you may give instructions on setting up your project locally.)
 
-- Production ready [Dockerfile](#docker-images).
+[//]: # (To get a local copy up and running follow these simple example steps.)
 
-### Server
+[//]: # ()
+[//]: # (### Prerequisites)
 
-- NestJS basic package with all the Nest tools. See the [server README](./packages/server/) for more information.
+[//]: # ()
+[//]: # (This is an example of how to list things you need to use the software and how to install them.)
 
-- A predefined **global config module** to handle all the configuration you would like to pass to your server at runtime. You can lean more in the server's README [Configuration module](./packages/server/README.md#configuration-module) section.
+[//]: # (* npm)
 
-- Production ready [Dockerfile](#docker-images).
+[//]: # (  ```sh)
 
+[//]: # (  npm install npm@latest -g)
 
-### Client/Server versions
+[//]: # (  ```)
 
+[//]: # ()
+[//]: # (### Installation)
 
-While being minimalistic, this boilerplate provides straight-forward access to the client's or version's deployed version:
+[//]: # ()
+[//]: # (1. Get a free API Key at [https://example.com]&#40;https://example.com&#41;)
 
-1. To check the server's version, simply call the [`/version`](http://localhost:4000/version) endpoint which returns a JSON looking like this:
+[//]: # (2. Clone the repo)
 
-    ```json
-    {
-      "GIT_SHORT_HASH": "568cfad",
-      "GIT_BRANCH": "master",
-      "REPO_VERSION": "1.0.0",
-      "DOMAIN_VERSION": "1.0.0",
-      "LIB_VERSION": "1.0.0",
-      "SERVER_VERSION": "1.0.0"
-    }
-    ```
+[//]: # (   ```sh)
 
-2. To identify the client's deployed version, you can see the page's source code and look for the JS bundle name, which should look like: `index.39a2462@master.c177f4e7.js`. This corresponds to the pattern passed in the [`vite.config.ts`](./packages/client/vite.config.ts) file: `[name].${getBuildId()}.[hash].js`. Currently, the `buildId` is defined as `shortHash@branch` but you can adapt the `getBuildId` function to your needs.
+[//]: # (   git clone https://github.com/github_username/repo_name.git)
 
-3. Since the two applications are supposed to be deployed as separate Docker images, this boilerplate comes with a simple function embedded in the frontend: [`checkServerVersion`](./packages/client/src/utils/checkServerVersion.ts). If the server version doesn't satisfy the frontend **peer dependency**, an error message will be printed in the frontend console (using the debug library).
+[//]: # (   ```)
 
----
+[//]: # (3. Install NPM packages)
 
-## How to use this boilerplate
+[//]: # (   ```sh)
 
-First, you'll need to download and adapt it to your project:
+[//]: # (   npm install)
 
-1. You can use the [Use this template](https://github.com/LandazuriPaul/notwidget/generate) feature from GitHub to generate a new project based on this boilerplate. Alternatively, you can clone this repository to a brand new folder named after your `new-project`:
+[//]: # (   ```)
 
-   ```sh
-   git clone git@github.com:LandazuriPaul/notwidget.git new-project
-   ```
+[//]: # (4. Enter your API in `config.js`)
 
-> For steps 2 to 5, a global `search in all files` command from any decent editor should help. You can simply search for `notwidget` and replace it by your `new-project`.
+[//]: # (   ```js)
 
-2. Change the main project's name, set in the root [`package.json`](./package.json)'s `name` field and in its `scripts` commands.
+[//]: # (   const API_KEY = 'ENTER YOUR API';)
 
-3. Change each package's name, set in its own `package.json`'s `name` field.
+[//]: # (   ```)
 
-4. Update the `dependencies` of each package requiring one of the internal packages:
+[//]: # ()
+[//]: # (<p align="right">&#40;<a href="#top">back to top</a>&#41;</p>)
 
-   - Server: [`package.json`](./packages/server/package.json)
-   - Client: [`package.json`](./packages/client/package.json)
+[//]: # ()
+[//]: # ()
 
-5. Change the client debug `LOGGER_PREFIX` which is set in the [`config.ts`](./packages/client/src/config.ts) file. For more information, see the client README section about the [Debug library](./packages/client#debug-library).
+[//]: # (<!-- USAGE EXAMPLES -->)
 
-6. Adapt the [`packages/client/public`](./packages/client/public) folder to your project (with your icons, manifest, robots.txt files).
+[//]: # (## Usage)
 
-### Project installation
+[//]: # ()
+[//]: # (Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.)
 
-Once you're done with the previous steps, you can properly install the project dependencies and link the packages together:
+[//]: # ()
+[//]: # (_For more examples, please refer to the [Documentation]&#40;https://example.com&#41;_)
 
-1. Basic requirements to run the repository:
+[//]: # ()
+[//]: # (<p align="right">&#40;<a href="#top">back to top</a>&#41;</p>)
 
-   - [Node.js](https://nodejs.org/en/): The recommended way is via [`nvm`](https://github.com/nvm-sh/nvm). You can then install the version used for this project:
-     ```sh
-     nvm install 14.16.0
-     ```
-   - [Yarn](https://classic.yarnpkg.com/): If you have `nvm` installed, you'd prefer to install `yarn` without the node dependency. To do so, the `bash` install is the easiest:
-     ```sh
-     curl -o- -L https://yarnpkg.com/install.sh | bash
-     ```
 
-   > As the boilerplate makes use of the yarn workspaces, you shouldn't use `npm`.
+[//]: # ()
+[//]: # (<!-- ROADMAP -->)
 
-2. Install dependencies with the classic:
+[//]: # (## Roadmap)
 
-   ```sh
-   yarn install
-   ```
+[//]: # ()
+[//]: # (- [ ] Feature 1)
 
-   > This will install all package dependencies in a common `node_modules` folder at the root of the project using a single `yarn.lock` file to avoid conflicting dependencies. The internal dependencies will be replaced by symbolic links to the corresponding packages.
+[//]: # (- [ ] Feature 2)
 
-3. Finally, in order to have the "common" packages (`lib` and `domain`) built so they can be used by both the `server` and the `client`, run:
+[//]: # (- [ ] Feature 3)
 
-   ```sh
-   yarn build:common
-   ```
+[//]: # (    - [ ] Nested Feature)
 
-   Or if you want the common packages to be **watched for file changes**, you can run:
+[//]: # ()
+[//]: # (See the [open issues]&#40;https://github.com/github_username/repo_name/issues&#41; for a full list of proposed features &#40;and known issues&#41;.)
 
-   ```sh
-   yarn start:common
-   ```
+[//]: # ()
+[//]: # (<p align="right">&#40;<a href="#top">back to top</a>&#41;</p>)
 
-#### Note about subsequent installations
+[//]: # ()
+[//]: # ()
 
-When you want to add new dependencies to any of the packages, you can either:
+<!-- CONTRIBUTING -->
+## Contributing
 
-- Run `yarn add <new-package1> <new-package2>` in the corresponding package folder.
-- Or run `yarn workspace <YOUR_PACKAGE_NAME> add <new-package1> <new-package2>` from the root folder.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### Development & Builds
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-See each package's README to learn more about its development and build scripts:
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- [Client](./packages/client/README.md)
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-- [Server](./packages/server/README.md)
 
----
 
-## Code formatting
-
-- [EditorConfig](https://editorconfig.org/): _« helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. »_
-
-  - Rules are set in the root [`.editorconfig`](./.editorconfig) file.
-
-- [Prettier](https://prettier.io/) (^1.19.1): _« An opinionated code formatter »_ which _« saves you time and energy »_.
-
-  - Rules are set in the root [`.prettierrc`](./.prettierrc) file.
-
-## Linting
-
-[ESLint](https://eslint.org/) (^6.8.0) with [TypeScript parser](https://github.com/typescript-eslint/typescript-eslint) (^2.23.0): _« Find and fix problems in your JavaScript code »_
-
-- Project rules are set in the root [`.eslintrc`](./.eslintrc) file.
-
-- As the client package requires specific React related rules, it has its own [`.eslintrc`](./packages/client/.eslintrc) file which extends the project one.
-
-To see how to integrates these tools with your favourite IDE or text editor, you can see the CONTRIBUTING [Development tools](./CONTRIBUTING.md#development-tools) section.
-
-Each package has its own
-
-```sh
-yarn lint
-```
-
-command to ensure that its source code is written according to the ESLint rules. The project itself also has a root `yarn lint` command to sequentially run it in each internal package.
-
-## TypeScript import paths
-
-As you can see in all packages' `tsconfig.json` files, both the `baseUrl` and `paths` properties are defined to help you avoid the cumbersome and error-prone `../../` import paths (amongst other options):
-
-```json
-// packages' tsconfig.json
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
-    "paths": {
-      "~/*": ["src/*"]
-    }
-  }
-}
-```
-
-This allows you to `import` any file from the **same package** with the `'~/path/to/file/'` notation, considering the `src` folder as the package's _home_ (i.e. `~`).
-
-## Docker images
-
-This project comes with a `Dockerfile` for each package likely to be deployed. They are all based on the [alpine](https://alpinelinux.org/) project.
-
-To build the corresponding Docker images, you can use the [build_and_push.sh](./scripts/build_and_push.sh) script by setting the `PACKAGE` and optionally the `VERSION` — defaults to `latest` — as environment variables or simply use the dedicated `yarn` commands (the `latest` version will be applied):
-
-```sh
-# To build and push the server
-yarn build-push:server
-
-# To build and push the client
-yarn build-push:client
-```
-
-## Deployment
-
-The shipped [`docker-compose.yml`](./docker-compose.yml) file is mainly for demonstration purposes and local testing.
-
-In order to run the applications in a completely containerised environment, please refer to the [Docker documentation](https://docs.docker.com/).
-
-## Improvements
-
-- #TODO: Add an automated script to run installation steps 2 to 5.
-
+<!-- LICENSE -->
 ## License
 
-This project is licensed under the [GNU Lesser General Public License v3.0 or later](https://spdx.org/licenses/LGPL-3.0-or-later.html). You can learn more reading the [LICENSE](./LICENSE).
+Distributed under the `GNU LESSER GENERAL PUBLIC LICENSE`. See `LICENSE.txt` for more information.
 
-## Author
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Paul Landázuri
+
+
+<!-- CONTACT -->
+## Contact
+
+Your Name - vlad.a.denisov@gmail.com
+
+Project Link: [https://github.com/vladdenisov/notwidget](https://github.com/github_username/repo_name)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+[//]: # ()
+[//]: # (<!-- ACKNOWLEDGMENTS -->)
+
+[//]: # (## Acknowledgments)
+
+[//]: # ()
+[//]: # (* []&#40;&#41;)
+
+[//]: # (* []&#40;&#41;)
+
+[//]: # (* []&#40;&#41;)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-url]: https://github.com/github_username/repo_name/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-url]: https://github.com/github_username/repo_name/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-url]: https://github.com/github_username/repo_name/issues
+[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/linkedin_username
+[product-screenshot]: images/screenshot.png
