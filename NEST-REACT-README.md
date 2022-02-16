@@ -46,7 +46,7 @@ While being minimalistic, this boilerplate offers a number of features which can
 
 - NestJS basic package with all the Nest tools. See the [server README](./packages/server/) for more information.
 
-- A predefined **global config module** to handle all the configuration you would like to pass to your server at runtime. You can lean more in the server's README [Configuration module](./packages/server/NEST-REACT-README.md#configuration-module) section.
+- A predefined **global config module** to handle all the configuration you would like to pass to your server at runtime. You can lean more in the server's README [Configuration module](./packages/server/README.md#configuration-module) section.
 
 - Production ready [Dockerfile](#docker-images).
 
@@ -150,7 +150,7 @@ See each package's README to learn more about its development and build scripts:
 
 - [Client](./packages/client/README.md)
 
-- [Server](./packages/server/NEST-REACT-README.md)
+- [Server](./packages/server/README.md)
 
 ---
 
