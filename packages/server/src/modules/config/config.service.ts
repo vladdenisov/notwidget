@@ -16,7 +16,12 @@ export class ConfigService {
     HOST: string().required(),
     PORT: number().default(4000),
     SECRET_JWT_KEY: string().required(),
-    MONGO_URI: string().required()
+    MONGO_URI: string().required(),
+    EMAIL_USERNAME: string().required(),
+    EMAIL_PASSWORD: string().required(),
+    SMTP_HOSTNAME: string().required(),
+    SMTP_PORT: number().default(587),
+    EMAIL_NAME: string().default('Notwidget')
   });
   private envConfig: DotenvParseOutput;
   private logger = new Logger(ConfigService.name);
@@ -145,7 +150,7 @@ export class ConfigService {
   get port(): number {
     return parseInt(this.envConfig.PORT, 10);
   }
-  
+
   get mongo(): string {
     return String(this.envConfig.MONGO_URI);
   }
@@ -155,6 +160,12 @@ export class ConfigService {
 
   get secretJwtKey(): string {
     return String(this.envConfig.SECRET_JWT_KEY);
+  }
+  get transportUrl(): string {
+    return String(`smtps://${this.envConfig.EMAIL_USERNAME}:${this.envConfig.EMAIL_PASSWORD}@${this.envConfig.SMTP_HOSTNAME}`)
+  }
+  get emailUser(): string {
+    return String(`"${this.envConfig.EMAIL_NAME}" <${this.envConfig.EMAIL_USERNAME}>`)
   }
   createMongooseOptions(): MongooseModuleOptions {
     return {
