@@ -35,6 +35,7 @@ export const Registration: FC<unknown> = () => {
           value={email.value}
           onEmailSubmit={(emailValue) => {
             console.log(emailValue)
+            setStage(1)
           }}
           onEmailVerify={async (verifyCode) => {
             console.log(`Verify: ${verifyCode}`)

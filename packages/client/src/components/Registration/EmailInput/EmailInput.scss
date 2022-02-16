@@ -3,17 +3,23 @@
   box-sizing: border-box;
   border-radius: 8px;
   width: calc(100% - 2px);
-  padding: 32px;
   &_input {
     width: calc(100% - 64px);
     color: #242426;
     display: flex;
+    padding: 32px;
     flex-direction: column;
     margin: auto;
     span {
       font-size: 14px;
     }
     input {
+      &.incorrect {
+        border-bottom: 1.5px solid red;
+        &:focus {
+          border-bottom-color: red;
+        }
+      }
       margin-top: 20px;
       width: calc(100% - 32px);
       border: none;
@@ -36,8 +42,85 @@
       font-size: 16px;
       font-weight: 500;
       align-self: end;
-      margin-top: 10px;
+      margin-top: 16px;
       cursor: pointer;
+    }
+  }
+  &_confirmation {
+    width: calc(100% - 32px);
+    padding: 16px;
+    &__email {
+      font-size: 18px;
+    }
+    &__bottom {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      &___status {
+        color: #575F6E;
+        font-size: 14px;
+        margin: auto 0;
+      }
+      svg {
+        color: #007AFF;
+        font-size: 24px;
+        margin: auto 0 auto auto;
+        align-self: end;
+        justify-self: end;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.registration-email_verification {
+  margin-top: 30px;
+  &__code {
+    width: calc(100% - 30px);
+    margin: auto;
+    &-label {
+      color: #242426;
+      font-size: 14px;
+    }
+    &-bottomLabel {
+      color: #575F6E;
+      font-size: 12px;
+    }
+    &-input {
+      display: flex;
+      flex-direction: row;
+      input {
+        border: none;
+        width: calc(60% - 32px);
+        border-bottom: 1.5px solid #E2E4E5;
+        height: 44px;
+        font-size: 18px;
+        font-weight: 900;
+        padding: 0 16px;
+        transition: border-bottom-color 0.3s ease;
+        &:focus {
+          outline: none;
+          border-bottom-color: #007AFF;
+        }
+      }
+      button {
+        color: #007AFF;
+        font-weight: 900;
+        font-size: 16px;
+        border: none;
+        padding: 0 16px;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        margin: auto 0 auto auto;
+        justify-self: end;
+        height: fit-content;
+        svg {
+          font-size: 18px;
+          margin: auto 5px;
+        }
+      }
     }
   }
 }
