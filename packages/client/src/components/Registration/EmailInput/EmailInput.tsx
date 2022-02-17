@@ -11,7 +11,7 @@ export const EmailInput: FC<{
   isVerified: boolean,
   value: string,
   onEmailSubmit: (email: string) => void,
-  onEmailVerify: (code: string) => Promise<boolean>
+  onEmailVerify: (code: string, emailValue: string) => Promise<boolean>
 }> = (props) => {
   const [email, setEmailValue] = useState(props.value)
   const [isVerified, setVerified] = useState(props.isVerified)
@@ -41,7 +41,7 @@ export const EmailInput: FC<{
                 autoComplete={'off'}
                 defaultValue={email}
                 placeholder={'example@gmail.com'}
-                className={(isEmailCorrect === null || isEmailCorrect) ? '' : 'incorrect'}
+                className={(isEmailCorrect === undefined || isEmailCorrect) ? '' : 'incorrect'}
                 onChange={(e) => {
                   if (!isVerificationPending) {
                     const value = (e.target as HTMLInputElement).value
@@ -71,7 +71,7 @@ export const EmailInput: FC<{
                   <MdModeEditOutline onClick={() => {
                     setVerified(false)
                     setPending(false)
-
+                    setCode('')
                   }}/>
                 </div>
               </div>
@@ -95,8 +95,13 @@ export const EmailInput: FC<{
                     console.log(e)
                     setCode(((e.target) as HTMLInputElement).value.toLocaleUpperCase())
                   }}
-                  onKeyPress={(key) => {
-                    console.log(key)
+                  onKeyPress={async (key) => {
+                    if (key.key === 'Enter' && isVerificationPending) {
+                      const verified = await props.onEmailVerify(verificationCode, email)
+                      setVerified(verified)
+                      setPending(!verified)
+                      setCode("")
+                    }
                   }}
                 />
                 <button><IoMdRefresh />Send again</button>
