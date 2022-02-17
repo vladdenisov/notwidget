@@ -5,14 +5,16 @@ import { ConfigService } from '../config/config.service';
 import { UserController } from './user.controller';
 import { Users, UserSchema } from './user.schema';
 import { UserService } from './user.service';
+import {EmailModule} from "~/modules/email/email.module";
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       {name: Users.name, schema: UserSchema}
-    ]), 
+    ]),
     ConfigService,
-    AuthModule
+    AuthModule,
+    EmailModule
   ],
   controllers: [UserController],
   providers: [UserService],

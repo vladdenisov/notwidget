@@ -25,7 +25,7 @@ import {PugAdapter} from "@nestjs-modules/mailer/dist/adapters/pug.adapter";
           from: configService.emailUser,
         },
         template: {
-          dir: __dirname + '/email/templates',
+          dir: process.cwd() + '/templates',
           adapter: new PugAdapter(),
           options: {
             strict: true,

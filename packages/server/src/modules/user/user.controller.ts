@@ -6,12 +6,14 @@ import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { LoginDto } from './dto/login.dto';
 import { AuthService } from '../auth/auth.service';
+import {EmailService} from "~/modules/email/email.service";
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly emailService: EmailService
   ) {}
 
   @Post("login")
@@ -27,6 +29,15 @@ export class UserController {
     }
   }
 
+  @Post('sendcode')
+  async sendCode(@Body() body: {email: string}): Promise<boolean> {
+    await this.userService.checkEmail(body.email)
+    return await this.emailService.addEmail(body.email)
+  }
+  @Post('verifycode')
+  async verifyCode(@Body() body: {email: string, code: string}): Promise<{hash?: string}> {
+    return await this.emailService.verifyCode(body.email, body.code)
+  }
   @Post("create")
   async createUser(@Body() createUserDto: CreateUserDto): Promise<{ token: string; id: string }> {
     const user = await this.userService.create(createUserDto)
@@ -47,7 +58,7 @@ export class UserController {
   }
 
 
-  @Get(':id') 
+  @Get(':id')
   @UseGuards(JwtAuthGuard)
   async getInfo(@Param('id') id: string): Promise<{
     username: string;

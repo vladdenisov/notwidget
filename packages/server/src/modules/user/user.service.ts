@@ -10,16 +10,24 @@ import { ConfigService } from "../config/config.service";
 import { AuthService } from "../auth/auth.service";
 import { LoginDto } from "./dto/login.dto";
 
-@Injectable() 
+@Injectable()
 export class UserService {
   constructor(
-    @InjectModel(Users.name) private userModel: Model<UserDocument>, 
+    @InjectModel(Users.name) private userModel: Model<UserDocument>,
     private readonly ConfigModule: ConfigService,
     private readonly AuthService: AuthService
   ) {}
 
   async findAll(): Promise<Users[]> {
     return this.userModel.find().exec()
+  }
+
+  async checkEmail(email: string): Promise<boolean> {
+    const isUser = await this.userModel.find({email: email})
+    if (isUser[0]) {
+      throw new ConflictException()
+    }
+    return true
   }
 
   async create(createUserDto: CreateUserDto): Promise<{ username: string; id: string; }> {
@@ -55,7 +63,7 @@ export class UserService {
 
 
   async checkToken(token: string): Promise<{id: string, _id: string} | Record<string, never>> {
-    const decodedToken: {id: string, _id: string} = await <{id: string, _id: string}>jwt.verify(token, this.ConfigModule.secretJwtKey) 
+    const decodedToken: {id: string, _id: string} = await <{id: string, _id: string}>jwt.verify(token, this.ConfigModule.secretJwtKey)
     if (!decodedToken) return {}
     else return decodedToken
   }
